@@ -1,5 +1,8 @@
-# WindSpeed
-Project to build a data pipeline to retreive windspeed of a region
+# WindSpeed 🌀
+
+ Data Pipeline Code to retreive windspeed of a region.
+
+For this example, we have used the city of Boston. 
 
 --- 
 
