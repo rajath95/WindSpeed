@@ -16,7 +16,10 @@ For this example, we have used the city of Boston.
 
 <img src="https://github.com/rajath95/WindSpeed/blob/main/weather-api.png" alt="Output" width="300"/>
 
-API provided by www.weatherapi.com
+*API provided by weatherapi.com*
+
+&nbsp;
+
 
 ## Real Time Display
 
