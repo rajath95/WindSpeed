@@ -8,7 +8,7 @@ For this example, we have used the city of Boston.
 
 ## Architecture
 
-![schema](arch.png)
+<img src="https://github.com/rajath95/WindSpeed/blob/main/arch.png" alt="Output" width="500"/>
 
 ---
 
@@ -20,7 +20,7 @@ For this example, we have used the city of Boston.
 
 ## Real Time Display
 
-<img src="https://github.com/rajath95/WindSpeed/blob/main/output.png" alt="Output" width="250"/>
+<img src="https://github.com/rajath95/WindSpeed/blob/main/output.png" alt="Output" width="500"/>
 
 
 ---
