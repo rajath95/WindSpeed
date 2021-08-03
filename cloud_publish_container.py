@@ -40,7 +40,7 @@ class Publish:
         future = publisher.publish(topic_path,weather_data)
         print(future.result())
 
-# add try-catch exceptions for all 2 methods
+
 
 
 while True:
