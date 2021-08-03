@@ -14,7 +14,7 @@ For this example, we have used the city of Boston.
 ## Source 
 
 
-
+<img src="https://github.com/rajath95/WindSpeed/blob/main/weatherapi.png" alt="Output" width="500"/>
 
 ## Real Time Display
 
