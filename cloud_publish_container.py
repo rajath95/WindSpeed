@@ -10,6 +10,7 @@ class Publish:
         self.project_id = "elevated-summer-320003"
         self.topic_id = "Weather"
         os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "cloudcredentials.json"
+        logging.basicConfig(level=logging.INFO)
 
 
     def fetch_weather(self):
@@ -27,7 +28,7 @@ class Publish:
 
 
     def publish_msg(self):
-        logging.basicConfig(level=logging.INFO)
+
 
         publisher = pubsub_v1.PublisherClient()
         topic_path = publisher.topic_path(self.project_id,self.topic_id)
