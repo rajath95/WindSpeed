@@ -20,7 +20,7 @@ For this example, we have used the city of Boston.
 
 ## Real Time Display
 
-[output](output.png)
+<img src="https://github.com/rajath95/WindSpeed/blob/main/output.png" alt="Output" width="250"/>
 
 
 ---
