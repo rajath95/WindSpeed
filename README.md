@@ -20,7 +20,7 @@ For this example, we have used the city of Boston.
 
 ## Real Time Display
 
-[output](output.jpg)
+[output](output.png)
 
 
 ---
