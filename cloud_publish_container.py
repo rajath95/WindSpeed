@@ -14,34 +14,43 @@ class Publish:
 
 
     def fetch_weather(self):
-        api_key = os.environ['weather_api_key']
+        try:
+            api_key = os.environ['weather_api_key']
 
         #set key as envt var
-        url = 'http://api.weatherapi.com/v1/current.json?key='+api_key+'&q=Boston&aqi=no'
-        response = requests.get(url)
-        logging.info("successfully pinged weather api")
-        string = response.json()
-        json_string = json.dumps(string)
-        logging.info("converted json response data to string")
-        logging.info(json_string)
+            url = 'http://api.weatherapi.com/v1/current.json?key='+api_key+'&q=Boston&aqi=no'
+            response = requests.get(url)
+            logging.info("successfully pinged weather api")
+
+        except:
+            logging.error("error during get request on url")
+            return
+
+        try:
+            string = response.json()
+            json_string = json.dumps(string)
+            logging.info("converted json response data to string")
+            logging.info(json_string)
+        except:
+            logging.error("error during json conversion")
+
         return json_string
 
 
     def publish_msg(self):
 
-
-        publisher = pubsub_v1.PublisherClient()
-        topic_path = publisher.topic_path(self.project_id,self.topic_id)
+        try:
+            publisher = pubsub_v1.PublisherClient()
+            topic_path = publisher.topic_path(self.project_id,self.topic_id)
 
         # fetch_weather should be byte string
-        weather_data = self.fetch_weather()
-        weather_data = weather_data.encode("utf-8")
-
-        future = publisher.publish(topic_path,weather_data)
-        print(future.result())
-
-
-
+            weather_data = self.fetch_weather()
+            weather_data = weather_data.encode("utf-8")
+            future = publisher.publish(topic_path,weather_data)
+            logging.info("Successfully published message to topic")
+            print(future.result())
+        except:
+            raise Exception("Failed to run publish")
 
 while True:
     pub = Publish()
