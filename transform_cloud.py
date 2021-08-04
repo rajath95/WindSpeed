@@ -16,28 +16,31 @@ class Load_to_BQ:
 
 
     def transform(self,event):
-
-        file_name = event['name']
-        storage_client = Client()
-        bucket = storage_client.bucket(self.bucket_name)
-        blob = bucket.get_blob(file_name)
-        text = blob.download_as_text()
-        df = pandas.read_csv(StringIO(text))
-
-
-        transformed_df=df[["location.lat","location.lon","current.wind_kph","current.temp_c","current.last_updated"]]
-        transformed_df.columns= ["latitude","longitude","windspeed","temperature","last_updated"]
-        logging.info(transformed_df)
-        logging.info("Transformed df to include relevant columns")
+        try:
+            file_name = event['name']
+            storage_client = Client()
+            bucket = storage_client.bucket(self.bucket_name)
+            blob = bucket.get_blob(file_name)
+            text = blob.download_as_text()
+            df = pandas.read_csv(StringIO(text))
+            transformed_df=df[["location.lat","location.lon","current.wind_kph","current.temp_c","current.last_updated"]]
+            transformed_df.columns= ["latitude","longitude","windspeed","temperature","last_updated"]
+            logging.info(transformed_df)
+            logging.info("Transformed df to include relevant columns")
+        except:
+            logging.error("Failed to transform text")
         return transformed_df
 
 
 
 
     def load(self,dataframe):
-        tablename = self.dataset_id+"."+self.table_id
-        dataframe.to_gbq(tablename,if_exists="append")
-        logging.info("Successfully loaded transformed data to BigQuery Table")
+        try:
+            tablename = self.dataset_id+"."+self.table_id
+            dataframe.to_gbq(tablename,if_exists="append")
+            logging.info("Successfully loaded transformed data to BigQuery Table")
+        except:
+            logging.error("Failed to load data")
         return
 
 
