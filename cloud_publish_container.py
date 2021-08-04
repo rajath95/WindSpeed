@@ -16,8 +16,7 @@ class Publish:
     def fetch_weather(self):
         try:
             api_key = os.environ['weather_api_key']
-
-        #set key as envt var
+            #set key as envt var
             url = 'http://api.weatherapi.com/v1/current.json?key='+api_key+'&q=Boston&aqi=no'
             response = requests.get(url)
             logging.info("successfully pinged weather api")
@@ -42,8 +41,7 @@ class Publish:
         try:
             publisher = pubsub_v1.PublisherClient()
             topic_path = publisher.topic_path(self.project_id,self.topic_id)
-
-        # fetch_weather should be byte string
+            # fetch_weather should be byte string
             weather_data = self.fetch_weather()
             weather_data = weather_data.encode("utf-8")
             future = publisher.publish(topic_path,weather_data)
@@ -56,4 +54,4 @@ while True:
     pub = Publish()
     pub.publish_msg()
     time.sleep(900)
-#pub.fetch_weather()
+    #pub.fetch_weather()
